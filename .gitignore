@@ -6,6 +6,7 @@ Temp
 
 UnityGenerated/
 Library/
+WebBuild/
 #Library/cache/*
 #Library/metadata/*
 #Library/previews/*
@@ -56,4 +57,11 @@ guidmapper
 InspectorExpandedItems.asset
 MonoManager.asset
 NetworkManager.asset
-ScriptMapper
+ScriptMapperProjectSettings/GraphicsSettings.asset
+
+ProjectSettings/GraphicsSettings.asset
+ProjectSettings/Physics2DSettings.asset
+ProjectSettings/ProjectSettings.asset
+ProjectSettings/QualitySettings.asset
+ProjectSettings/TagManager.asset
+ProjectSettings/TimeManager.asset

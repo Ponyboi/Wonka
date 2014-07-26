@@ -1,0 +1,427 @@
+fileFormatVersion: 2
+guid: b13f5f65d590a4c40a3b89dd1c16d162
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Head
+    100002: Hip
+    100004: Left_Ankle_Joint_01
+    100006: Left_Forearm_Joint_01
+    100008: Left_Knee_Joint_01
+    100010: Left_Shoulder_Joint_01
+    100012: Left_Thigh_Joint_01
+    100014: Left_Toe_Joint_01
+    100016: Left_Upper_Arm_Joint_01
+    100018: Left_Wrist_Joint_01
+    100020: Neck
+    100022: //RootNode
+    100024: pCube1
+    100026: pCube2
+    100028: polySurface1
+    100030: polySurface10
+    100032: polySurface12
+    100034: polySurface13
+    100036: polySurface14
+    100038: polySurface15
+    100040: polySurface16
+    100042: polySurface2
+    100044: polySurface3
+    100046: polySurface4
+    100048: polySurface5
+    100050: polySurface6
+    100052: polySurface7
+    100054: polySurface8
+    100056: Ribs
+    100058: Right_Ankle_Joint_01
+    100060: Right_Forearm_Joint_01
+    100062: Right_Knee_Joint_01
+    100064: Right_Shoulder_Joint_01
+    100066: Right_Thigh_Joint_01
+    100068: Right_Toe_Joint_01
+    100070: Right_Upper_Arm_Joint_01
+    100072: Right_Wrist_Joint_01
+    100074: Root
+    100076: transform1
+    100078: transform10
+    100080: transform11
+    100082: transform12
+    100084: transform13
+    100086: transform14
+    100088: transform2
+    100090: transform3
+    100092: transform4
+    100094: transform5
+    100096: transform6
+    100098: transform7
+    100100: transform8
+    100102: transform9
+    400000: Head
+    400002: Hip
+    400004: Left_Ankle_Joint_01
+    400006: Left_Forearm_Joint_01
+    400008: Left_Knee_Joint_01
+    400010: Left_Shoulder_Joint_01
+    400012: Left_Thigh_Joint_01
+    400014: Left_Toe_Joint_01
+    400016: Left_Upper_Arm_Joint_01
+    400018: Left_Wrist_Joint_01
+    400020: Neck
+    400022: //RootNode
+    400024: pCube1
+    400026: pCube2
+    400028: polySurface1
+    400030: polySurface10
+    400032: polySurface12
+    400034: polySurface13
+    400036: polySurface14
+    400038: polySurface15
+    400040: polySurface16
+    400042: polySurface2
+    400044: polySurface3
+    400046: polySurface4
+    400048: polySurface5
+    400050: polySurface6
+    400052: polySurface7
+    400054: polySurface8
+    400056: Ribs
+    400058: Right_Ankle_Joint_01
+    400060: Right_Forearm_Joint_01
+    400062: Right_Knee_Joint_01
+    400064: Right_Shoulder_Joint_01
+    400066: Right_Thigh_Joint_01
+    400068: Right_Toe_Joint_01
+    400070: Right_Upper_Arm_Joint_01
+    400072: Right_Wrist_Joint_01
+    400074: Root
+    400076: transform1
+    400078: transform10
+    400080: transform11
+    400082: transform12
+    400084: transform13
+    400086: transform14
+    400088: transform2
+    400090: transform3
+    400092: transform4
+    400094: transform5
+    400096: transform6
+    400098: transform7
+    400100: transform8
+    400102: transform9
+    4300000: polySurface16
+    7400000: RaiseArms
+    7400002: HoldArms
+    7400004: Take 001
+    9500000: //RootNode
+    13700000: polySurface16
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: RaiseArms
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube1/transform1
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform2
+        weight: 1
+      - path: polySurface1
+        weight: 1
+      - path: polySurface1/polySurface2
+        weight: 1
+      - path: polySurface1/polySurface2/transform5
+        weight: 1
+      - path: polySurface1/polySurface3
+        weight: 1
+      - path: polySurface1/polySurface3/polySurface4
+        weight: 1
+      - path: polySurface1/polySurface3/polySurface4/transform6
+        weight: 1
+      - path: polySurface1/polySurface3/polySurface5
+        weight: 1
+      - path: polySurface1/polySurface3/polySurface5/transform8
+        weight: 1
+      - path: polySurface1/polySurface3/polySurface7
+        weight: 1
+      - path: polySurface1/polySurface3/polySurface7/polySurface12
+        weight: 1
+      - path: polySurface1/polySurface3/polySurface7/polySurface12/transform11
+        weight: 1
+      - path: polySurface1/polySurface3/polySurface7/transform10
+        weight: 1
+      - path: polySurface1/polySurface3/transform4
+        weight: 1
+      - path: polySurface1/transform3
+        weight: 1
+      - path: polySurface6
+        weight: 1
+      - path: polySurface6/transform7
+        weight: 1
+      - path: polySurface8
+        weight: 1
+      - path: polySurface8/polySurface10
+        weight: 1
+      - path: polySurface8/polySurface10/transform12
+        weight: 1
+      - path: polySurface8/transform9
+        weight: 1
+      - path: polySurface13
+        weight: 1
+      - path: polySurface13/polySurface14
+        weight: 1
+      - path: polySurface13/polySurface15
+        weight: 1
+      - path: polySurface13/polySurface15/transform14
+        weight: 1
+      - path: polySurface13/transform13
+        weight: 1
+      - path: polySurface16
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Hip
+        weight: 1
+      - path: Root/Hip/Left_Thigh_Joint_01
+        weight: 1
+      - path: Root/Hip/Left_Thigh_Joint_01/Left_Knee_Joint_01
+        weight: 1
+      - path: Root/Hip/Left_Thigh_Joint_01/Left_Knee_Joint_01/Left_Ankle_Joint_01
+        weight: 1
+      - path: Root/Hip/Left_Thigh_Joint_01/Left_Knee_Joint_01/Left_Ankle_Joint_01/Left_Toe_Joint_01
+        weight: 1
+      - path: Root/Hip/Right_Thigh_Joint_01
+        weight: 1
+      - path: Root/Hip/Right_Thigh_Joint_01/Right_Knee_Joint_01
+        weight: 1
+      - path: Root/Hip/Right_Thigh_Joint_01/Right_Knee_Joint_01/Right_Ankle_Joint_01
+        weight: 1
+      - path: Root/Hip/Right_Thigh_Joint_01/Right_Knee_Joint_01/Right_Ankle_Joint_01/Right_Toe_Joint_01
+        weight: 1
+      - path: Root/Ribs
+        weight: 1
+      - path: Root/Ribs/Left_Shoulder_Joint_01
+        weight: 1
+      - path: Root/Ribs/Left_Shoulder_Joint_01/Left_Upper_Arm_Joint_01
+        weight: 1
+      - path: Root/Ribs/Left_Shoulder_Joint_01/Left_Upper_Arm_Joint_01/Left_Forearm_Joint_01
+        weight: 1
+      - path: Root/Ribs/Left_Shoulder_Joint_01/Left_Upper_Arm_Joint_01/Left_Forearm_Joint_01/Left_Wrist_Joint_01
+        weight: 1
+      - path: Root/Ribs/Neck
+        weight: 1
+      - path: Root/Ribs/Neck/Head
+        weight: 1
+      - path: Root/Ribs/Right_Shoulder_Joint_01
+        weight: 1
+      - path: Root/Ribs/Right_Shoulder_Joint_01/Right_Upper_Arm_Joint_01
+        weight: 1
+      - path: Root/Ribs/Right_Shoulder_Joint_01/Right_Upper_Arm_Joint_01/Right_Forearm_Joint_01
+        weight: 1
+      - path: Root/Ribs/Right_Shoulder_Joint_01/Right_Upper_Arm_Joint_01/Right_Forearm_Joint_01/Right_Wrist_Joint_01
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: HoldArms
+      takeName: Take 001
+      firstFrame: 23.6000004
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube1/transform1
+        weight: 1
+      - path: pCube2
+        weight: 1
+      - path: pCube2/transform2
+        weight: 1
+      - path: polySurface1
+        weight: 1
+      - path: polySurface1/polySurface2
+        weight: 1
+      - path: polySurface1/polySurface2/transform5
+        weight: 1
+      - path: polySurface1/polySurface3
+        weight: 1
+      - path: polySurface1/polySurface3/polySurface4
+        weight: 1
+      - path: polySurface1/polySurface3/polySurface4/transform6
+        weight: 1
+      - path: polySurface1/polySurface3/polySurface5
+        weight: 1
+      - path: polySurface1/polySurface3/polySurface5/transform8
+        weight: 1
+      - path: polySurface1/polySurface3/polySurface7
+        weight: 1
+      - path: polySurface1/polySurface3/polySurface7/polySurface12
+        weight: 1
+      - path: polySurface1/polySurface3/polySurface7/polySurface12/transform11
+        weight: 1
+      - path: polySurface1/polySurface3/polySurface7/transform10
+        weight: 1
+      - path: polySurface1/polySurface3/transform4
+        weight: 1
+      - path: polySurface1/transform3
+        weight: 1
+      - path: polySurface6
+        weight: 1
+      - path: polySurface6/transform7
+        weight: 1
+      - path: polySurface8
+        weight: 1
+      - path: polySurface8/polySurface10
+        weight: 1
+      - path: polySurface8/polySurface10/transform12
+        weight: 1
+      - path: polySurface8/transform9
+        weight: 1
+      - path: polySurface13
+        weight: 1
+      - path: polySurface13/polySurface14
+        weight: 1
+      - path: polySurface13/polySurface15
+        weight: 1
+      - path: polySurface13/polySurface15/transform14
+        weight: 1
+      - path: polySurface13/transform13
+        weight: 1
+      - path: polySurface16
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/Hip
+        weight: 1
+      - path: Root/Hip/Left_Thigh_Joint_01
+        weight: 1
+      - path: Root/Hip/Left_Thigh_Joint_01/Left_Knee_Joint_01
+        weight: 1
+      - path: Root/Hip/Left_Thigh_Joint_01/Left_Knee_Joint_01/Left_Ankle_Joint_01
+        weight: 1
+      - path: Root/Hip/Left_Thigh_Joint_01/Left_Knee_Joint_01/Left_Ankle_Joint_01/Left_Toe_Joint_01
+        weight: 1
+      - path: Root/Hip/Right_Thigh_Joint_01
+        weight: 1
+      - path: Root/Hip/Right_Thigh_Joint_01/Right_Knee_Joint_01
+        weight: 1
+      - path: Root/Hip/Right_Thigh_Joint_01/Right_Knee_Joint_01/Right_Ankle_Joint_01
+        weight: 1
+      - path: Root/Hip/Right_Thigh_Joint_01/Right_Knee_Joint_01/Right_Ankle_Joint_01/Right_Toe_Joint_01
+        weight: 1
+      - path: Root/Ribs
+        weight: 1
+      - path: Root/Ribs/Left_Shoulder_Joint_01
+        weight: 1
+      - path: Root/Ribs/Left_Shoulder_Joint_01/Left_Upper_Arm_Joint_01
+        weight: 1
+      - path: Root/Ribs/Left_Shoulder_Joint_01/Left_Upper_Arm_Joint_01/Left_Forearm_Joint_01
+        weight: 1
+      - path: Root/Ribs/Left_Shoulder_Joint_01/Left_Upper_Arm_Joint_01/Left_Forearm_Joint_01/Left_Wrist_Joint_01
+        weight: 1
+      - path: Root/Ribs/Neck
+        weight: 1
+      - path: Root/Ribs/Neck/Head
+        weight: 1
+      - path: Root/Ribs/Right_Shoulder_Joint_01
+        weight: 1
+      - path: Root/Ribs/Right_Shoulder_Joint_01/Right_Upper_Arm_Joint_01
+        weight: 1
+      - path: Root/Ribs/Right_Shoulder_Joint_01/Right_Upper_Arm_Joint_01/Right_Forearm_Joint_01
+        weight: 1
+      - path: Root/Ribs/Right_Shoulder_Joint_01/Right_Upper_Arm_Joint_01/Right_Forearm_Joint_01/Right_Wrist_Joint_01
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  userData: 
