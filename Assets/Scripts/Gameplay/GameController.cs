@@ -6,6 +6,7 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameController : MonoBehaviour {
 	public CameraController camController;
@@ -25,6 +26,12 @@ public class GameController : MonoBehaviour {
 		pointer = Instantiate(pointerModel) as Transform;
 		camController = GameObject.Find("_CameraController").GetComponent<CameraController>();
 		Physics.IgnoreLayerCollision(10, 11); //wall and dispenser
+
+		//Vanish Tools
+		GameObject[] layerObjects = FindGameObjectsWithLayer(Tags.vanishLayer);
+		foreach (GameObject obj in layerObjects) {
+			obj.renderer.enabled = false;
+		}
 	}
 	
 	// Update is called once per frame
@@ -52,6 +59,20 @@ public class GameController : MonoBehaviour {
 
 	public int getIdSelect() {
 		return idSelect;
+	}
+
+	public GameObject[] FindGameObjectsWithLayer (int layer) {
+		GameObject[] goArray = FindObjectsOfType(typeof(GameObject)) as GameObject[];
+		List<GameObject> goList = new List<GameObject>();
+		for (int i = 0; i < goArray.Length; i++) {
+			if (goArray[i].layer == layer) {
+				goList.Add(goArray[i]);
+			}
+		}
+		if (goList.Count == 0) {
+			return null;
+		}
+		return goList.ToArray();
 	}
 	
 }
