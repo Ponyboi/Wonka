@@ -21,7 +21,8 @@ public class LaffyTaffy : MonoBehaviour {
 			//}
 		}
 		else if(col.gameObject.rigidbody!=null){
-			col.rigidbody.AddForce(new Vector3(0,10,0));
+			Vector3 curVel = col.rigidbody.velocity;
+			col.rigidbody.velocity = new Vector3(curVel.x,15,curVel.z);
 		}
 	}
 	void OnTriggerStay(Collider col){
@@ -31,7 +32,7 @@ public class LaffyTaffy : MonoBehaviour {
 //				player.verticalSpeed = player.jumpHeight*1.5f;
 			//}
 		}
-		else if(col.gameObject.rigidbody!=null){
+		else if(col.gameObject.rigidbody!=null&& col.rigidbody.velocity.y<0){
 			col.rigidbody.AddForce(new Vector3(0,150,0));
 		}
 	}
