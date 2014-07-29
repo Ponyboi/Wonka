@@ -4555,7 +4555,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &441758292
 Transform:
   m_ObjectHideFlags: 0
@@ -12634,7 +12634,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 12288
   opacity: .5
-  coolDown: 1
+  coolDown: .5
   warmUp: .5
   cameras:
   - {fileID: 1098396494}
@@ -12695,6 +12695,9 @@ MonoBehaviour:
   cameraController: {fileID: 0}
   cameraMain: {fileID: 0}
   isGrabbed: 0
+  jumpButton: 0
+  isJumping: 0
+  jumpStart: 0
 --- !u!136 &1228795327
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15192,6 +15195,7 @@ GameObject:
   - 23: {fileID: 1418775375}
   - 114: {fileID: 1418775374}
   - 114: {fileID: 1418775373}
+  - 114: {fileID: 1418775379}
   m_Layer: 0
   m_Name: Lava
   m_TagString: Untagged
@@ -15238,7 +15242,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: c3b876bddd576a64aac06b149307dff6, type: 2}
+  - {fileID: 2100000, guid: 7fe5ef0bd3b2e4645ba113b37546cb83, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -15273,11 +15277,25 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1418775372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.3287621, y: -6, z: 0}
+  m_LocalPosition: {x: -34.3384857, y: -6, z: 0}
   m_LocalScale: {x: 10, y: 9, z: 40}
   m_Children:
   - {fileID: 1947951980}
   m_Father: {fileID: 0}
+--- !u!114 &1418775379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1418775372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dfcbd00343c5fe458b4b57ee54d4281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleX: 0
+  scaleZ: 0
+  scaleAll: .0700000003
 --- !u!1 &1427785433
 GameObject:
   m_ObjectHideFlags: 0
@@ -16301,6 +16319,7 @@ GameObject:
   - 114: {fileID: 1540536358}
   - 114: {fileID: 1540536357}
   - 114: {fileID: 1540536356}
+  - 114: {fileID: 1540536363}
   m_Layer: 0
   m_Name: River
   m_TagString: Untagged
@@ -16360,7 +16379,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 50a3b4d2066a8b549b729c053db4bb51, type: 2}
+  - {fileID: 2100000, guid: 7fe5ef0bd3b2e4645ba113b37546cb83, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -16399,6 +16418,20 @@ Transform:
   m_LocalScale: {x: 50, y: 9, z: 40}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1540536363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1540536355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dfcbd00343c5fe458b4b57ee54d4281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleX: 0
+  scaleZ: 0
+  scaleAll: .0700000003
 --- !u!1 &1540669668
 GameObject:
   m_ObjectHideFlags: 0
@@ -19620,6 +19653,9 @@ MonoBehaviour:
   cameraController: {fileID: 0}
   cameraMain: {fileID: 0}
   isGrabbed: 0
+  jumpButton: 0
+  isJumping: 0
+  jumpStart: 0
 --- !u!136 &1855945070
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -20727,6 +20763,7 @@ MonoBehaviour:
   angularSpeedFloat: 0
   openBool: 0
   grabbingBool: 0
+  isJumping: 0
 --- !u!1 &1972622880
 GameObject:
   m_ObjectHideFlags: 0

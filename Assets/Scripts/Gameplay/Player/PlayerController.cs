@@ -18,6 +18,16 @@ public class PlayerController : MonoBehaviour
 	CharacterController controller;
 	public bool isGrabbed = false;
 
+	Animator animator;
+	private AnimatorStateInfo currentBaseState;			// a reference to the current state of the animator, used for base layer
+	static int jumpState = Animator.StringToHash("Base Layer.Jump");				// and are used to check state for various actions to occur
+
+	
+	//Jumping
+	public bool jumpButton = false;
+	public bool isJumping = false;
+	public bool jumpStart = false;
+
 	
 	void Awake ()
 	{
@@ -26,14 +36,32 @@ public class PlayerController : MonoBehaviour
 		hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
 		gameController = GameObject.Find("_GameController").GetComponent<GameController>();
 		cameraController = GameObject.Find("_CameraController").GetComponent<CameraController>();
-		
+		//anim = GetComponent<Animator>();
 		// Set the weight of the shouting layer to 1.
 //		anim.SetLayerWeight(1, 1f);
 	}
-	
-	
+
+
+//	void OnAnimatorMove() {
+//		Animator animator = GetComponent<Animator>();
+//		if (animator) {
+//			Vector3 newPosition = transform.position;
+//			//newPosition.z += animator.GetFloat("Runspeed") * Time.deltaTime;
+//			if (isJumping) {
+//				animator.applyRootMotion = false;
+//			} else {
+//				animator.applyRootMotion = true;
+//			}
+//			transform.position = newPosition;
+//		}
+//	}
+
 	void FixedUpdate ()
 	{
+		//Animation
+		currentBaseState = anim.GetCurrentAnimatorStateInfo(0);	// set our currentState variable to the current state of the Base Layer (0) of animation
+
+		
 		if (isGrabbed) {
 			rigidbody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
 		}else{
@@ -52,6 +80,7 @@ public class PlayerController : MonoBehaviour
 		// Right vector relative to the camera
 		// Always orthogonal to the forward vector
 		Vector3 right= new Vector3(forward.z, 0, -forward.x);
+		right = right.normalized;
 		
 		float v= 0;
 		float h= 0;
@@ -65,9 +94,12 @@ public class PlayerController : MonoBehaviour
 		
 		//MovementManagement(h, v, sneak);
 		MovementManagement(targetDirection.x, targetDirection.z, sneak);
+
+		Jumping();
 	}
 	
-	
+
+
 	void Update ()
 	{
 		// Cache the attention attracting input.
@@ -89,8 +121,11 @@ public class PlayerController : MonoBehaviour
 		if(horizontal != 0f || vertical != 0f)
 		{
 			// ... set the players rotation and set the speed parameter to 5.5f.
+			Vector2 moveDir = new Vector2(horizontal, vertical);
+			moveDir = moveDir * 2.5f;
+			moveDir *= moveDir.magnitude;
 			Rotating(horizontal, vertical);
-			anim.SetFloat(hash.speedFloat, 5.5f, speedDampTime, Time.deltaTime);
+			anim.SetFloat(hash.speedFloat, moveDir.magnitude, speedDampTime, Time.deltaTime);
 		}
 		else
 			// Otherwise set the speed parameter to 0.
@@ -111,6 +146,32 @@ public class PlayerController : MonoBehaviour
 		
 		// Change the players rotation to this new rotation.
 		rigidbody.MoveRotation(newRotation);
+	}
+
+	void Jumping(){
+//		Debug.Log("1 jumpState: " + jumpState + " currentBaseState: " + currentBaseState.nameHash);
+//		if (currentBaseState.nameHash != jumpState) {
+//			isJumping = false;
+//		}
+		
+		if (Input.GetButton("Jump")) {
+			anim.SetBool(hash.isJumping, true);
+			isJumping = true;
+		}
+		if (currentBaseState.nameHash == jumpState) {
+			anim.SetBool(hash.isJumping, false);
+			jumpStart = true;
+			//isJumping = true
+		}
+		if (currentBaseState.nameHash != jumpState && jumpStart) {
+			isJumping = false;
+			jumpStart = false;
+		}
+		if (isJumping) {
+			anim.applyRootMotion = false;
+		}else {
+			anim.applyRootMotion = true;
+		}
 	}
 	
 	

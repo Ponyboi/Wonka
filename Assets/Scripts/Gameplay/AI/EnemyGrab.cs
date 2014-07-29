@@ -15,6 +15,12 @@ public class EnemyGrab : MonoBehaviour {
 			player = GameObject.FindWithTag(Tags.player).GetComponent<PlayerController>();
 		}
 
+		PlayerController[] players = GameObject.FindObjectsOfType(typeof(PlayerController)) as PlayerController[];
+		foreach(PlayerController player in players) {
+			if (player.id == 1)
+				this.player = player;
+		}
+
 		enemySight = Nozzle.TraverseHierarchy(transform, "Head").GetComponent<EnemySight>();
 	}
 	
