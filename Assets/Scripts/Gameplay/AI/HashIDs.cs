@@ -18,6 +18,8 @@ public class HashIDs : MonoBehaviour
 	public int openBool;
 	public int grabbingBool;
 	public int isJumping;
+	public int isGrounded;
+	public int verticalSpeed;
 	
 	void Awake ()
 	{
@@ -35,5 +37,7 @@ public class HashIDs : MonoBehaviour
 		openBool = Animator.StringToHash("Open");
 		grabbingBool = Animator.StringToHash("Grabbing");
 		isJumping = Animator.StringToHash("isJumping");
+		isGrounded = Animator.StringToHash("isGrounded");
+		verticalSpeed = Animator.StringToHash("verticalSpeed");
 	}
 }

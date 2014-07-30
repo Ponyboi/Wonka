@@ -10,6 +10,9 @@ using System.Collections;
 public class Lava : MonoBehaviour {
 
 	public GameObject resetPos;
+	public float sinkRate = 0.3f;
+	public float sinkDist = 1;
+	public PlayerController player;
 
 	// Use this for initialization
 	void Start () {
@@ -22,8 +25,15 @@ public class Lava : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col) {
+//		if (col.gameObject.tag == "Player") {
+//			col.transform.position = resetPos.transform.position;
+//		}
+
 		if (col.gameObject.tag == "Player") {
-			col.transform.position = resetPos.transform.position;
+			player = col.GetComponent<PlayerController>();
+			player.transform.position = resetPos.transform.position;
 		}
+
+
 	}
 }
