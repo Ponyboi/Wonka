@@ -24,8 +24,16 @@ public class River : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
+		GameObject candyToRemove = null;
 		foreach (GameObject candy in candies) {
+			if (candy.transform.position.y < -40){
+				candyToRemove = candy;
+			}
 			candy.rigidbody.AddForce(new Vector3(0,0, force));
+		}
+		if(candyToRemove != null){
+			candies.Remove(candyToRemove);
+			Destroy(candyToRemove);
 		}
 	}
 
