@@ -48,6 +48,13 @@ public class River : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerExit(Collider col) {
+		if (col.gameObject.tag == "Candy") {
+			GameObject candy = col.gameObject;
+			candies.Remove(candy);
+		}
+	}
+
 	void OnTriggerStay(Collider col) {
 
 	}

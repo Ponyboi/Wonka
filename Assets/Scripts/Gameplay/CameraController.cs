@@ -36,6 +36,7 @@ public class CameraController : MonoBehaviour {
 	private float rayDist = 1000.0f;
 	public float coolDown = 1.0f;
 	public float warmUp = 0.5f;
+	public float yOffset = 2;
 
 	//Cameras
 	public GameObject[] cameras; 
@@ -70,10 +71,11 @@ public class CameraController : MonoBehaviour {
 	void Update () {
 		switch(camMode){
 		case CameraMode.Nozzle:
-			Vector3 camPos = new Vector3(player1.transform.position.x - distanceAway, player1.transform.position.y + distanceUp*2.1f, 0);
+			cameraTilt = -2;
+			Vector3 camPos = new Vector3(player1.transform.position.x - distanceAway, player1.transform.position.y + distanceUp*1.3f, player1.transform.position.z/3);
 			cameras[camIndex].transform.position = Vector3.Lerp(cameras[camIndex].transform.position, camPos, Time.deltaTime * smooth);
 			
-			cameras[camIndex].transform.rotation = Quaternion.LookRotation(Vector3.right*5 + Vector3.down*4); //players[1].transform.position + Vector3.right*4
+			cameras[camIndex].transform.rotation = Quaternion.LookRotation(Vector3.right*5 + Vector3.up*cameraTilt); //players[1].transform.position + Vector3.right*4
 			break;
 		case CameraMode.Solo:
 			SurroundCamera(playerFocus);
@@ -114,16 +116,17 @@ public class CameraController : MonoBehaviour {
 		} else {
 			player = player2.transform.position;
 		}
+		float distMod = (player1.transform.position - player2.transform.position).magnitude;
 		offset = player + 
-			playerRotation.transform.up * (distanceUp) - 
-				playerRotation.transform.forward * (distanceAway);
+			playerRotation.transform.up * (distanceUp + (distMod/4)) - 
+				playerRotation.transform.forward * (distanceAway + (distMod/2));
 		
 		playerRotation.transform.position = player;
 		cameraRotation.transform.position = offset;
 		cameraRotation.transform.parent = playerRotation.transform;
 		
 		if (0 < Mathf.Abs(Input.GetAxisRaw("RightAnalog_H"))) {
-			angle += Input.GetAxisRaw("RightAnalog_H") * rotateSpeed * 0.3f;
+			//angle += Input.GetAxisRaw("RightAnalog_H") * rotateSpeed * 0.3f;
 		} else {
 			angle += Input.GetAxis("Mouse X") * rotateSpeed;
 		}
@@ -163,18 +166,19 @@ public class CameraController : MonoBehaviour {
 		RaycastHit player1Hit = new RaycastHit();
 		RaycastHit player2Hit = new RaycastHit();
 		
-		Debug.DrawRay(cameras[camIndex].transform.position, player1.transform.position - cameras[camIndex].transform.position, Color.red);
-		Debug.DrawRay(cameras[camIndex].transform.position, player2.transform.position - cameras[camIndex].transform.position, Color.red);
+		Debug.DrawRay(cameras[camIndex].transform.position, (player1.transform.position + Vector3.up * yOffset) - cameras[camIndex].transform.position, Color.red);
+		Debug.DrawRay(cameras[camIndex].transform.position, (player2.transform.position + Vector3.up * yOffset) - cameras[camIndex].transform.position, Color.red);
 		//	Physics.Raycast(cameras[camIndex].transform.position, player2.transform.position - cameras[camIndex].transform.position, out player2Hit, rayDist, levelGeoMask);
-		
-		if (Physics.Raycast(cameras[camIndex].transform.position, player1.transform.position - cameras[camIndex].transform.position, out player1Hit, rayDist, levelGeoMask)){
+
+		//Vector3 player1NewHeight = new Vector3(player1.transform.position.x, player1.transform.position.y + yOffset, player1.transform.position.z)
+		if (Physics.Raycast(cameras[camIndex].transform.position, (player1.transform.position + Vector3.up * yOffset) - cameras[camIndex].transform.position, out player1Hit, rayDist, levelGeoMask)){
 			if (player1Hit.transform.gameObject.tag != "Player"){
 				if (!player1Hit.transform.gameObject.GetComponent<GhostHelper>())
 					player1Hit.transform.gameObject.AddComponent<GhostHelper>();
 				raycastGeo.Add(player1Hit.transform.gameObject);
 			}
 		}	
-		if (Physics.Raycast(cameras[camIndex].transform.position, player2.transform.position - cameras[camIndex].transform.position, out player2Hit, rayDist, levelGeoMask)){
+		if (Physics.Raycast(cameras[camIndex].transform.position, (player2.transform.position + Vector3.up * yOffset) - cameras[camIndex].transform.position, out player2Hit, rayDist, levelGeoMask)){
 			if (player2Hit.transform.gameObject.tag != "Player"){
 				if (player2Hit.transform.gameObject.GetComponent<GhostHelper>() == null)
 					player2Hit.transform.gameObject.AddComponent<GhostHelper>();

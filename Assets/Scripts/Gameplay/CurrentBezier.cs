@@ -186,7 +186,7 @@ public class CurrentBezier : MonoBehaviour {
 		return average;
 	}
 
-	void ToggleMeshes(Transform root) {
+	public static void ToggleMeshes(Transform root) {
 		foreach (Transform child in root) {
 			// Do something with child, then recurse.
 			//Debug.Log(child.name);

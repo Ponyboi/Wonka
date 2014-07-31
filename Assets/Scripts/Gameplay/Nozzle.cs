@@ -67,7 +67,7 @@ public class Nozzle : MonoBehaviour {
 
 		transform.position = Vector3.Lerp(transform.position, transform.position + movement, 2.3f);
 		if (currentCandy != null) {
-			currentCandy.transform.position = Vector3.Lerp(transform.position, transform.position + movement, 2.3f);
+			//currentCandy.transform.position = Vector3.Lerp(transform.position, transform.position + movement, 2.3f);
 		}
 
 		shootCandy();
@@ -84,10 +84,10 @@ public class Nozzle : MonoBehaviour {
 		
 		float v= 0;
 		float h= 0;
-		if (gameController.getIdSelect() == id) {
-			v = Input.GetAxisRaw("Vertical");
-			h = Input.GetAxisRaw("Horizontal");
-		} else if (Mathf.Abs(Input.GetAxisRaw("RightAnalog_V")) > 0.2f || Mathf.Abs(Input.GetAxisRaw("RightAnalog_H")) > 0.2f) {
+		//if (gameController.getIdSelect() == id) {
+			v = Input.GetAxisRaw("Vertical2");
+			h = Input.GetAxisRaw("Horizontal2");
+		 if (Mathf.Abs(Input.GetAxisRaw("RightAnalog_V")) > 0.2f || Mathf.Abs(Input.GetAxisRaw("RightAnalog_H")) > 0.2f) {
 			v = -Input.GetAxisRaw("RightAnalog_V");
 			h = Input.GetAxisRaw("RightAnalog_H");
 		}
@@ -105,25 +105,26 @@ public class Nozzle : MonoBehaviour {
 
 	public void shootCandy() {
 		//if (gameController.getIdSelect() == id) {
-			if ((Input.GetMouseButtonDown(0) && shootWaitTime < Time.time) || (0.2f < Mathf.Abs(Input.GetAxisRaw("RightTrigger")) && shootWaitTime < Time.time)) {
-				int candyType = UnityEngine.Random.Range(0,candies.Length);
-				Transform candy = (Transform)Instantiate(candies[candyType]);
-				currentCandy = candy;
-				candy.transform.position = transform.position + Vector3.up*3.5f;
-				shootWaitTime = Time.time + shootWait;
-				armWaitTime = Time.time + armWait;
+		if ((Input.GetMouseButtonDown(0) && shootWaitTime < Time.time) || (Input.GetButtonDown("Jump2") && shootWaitTime < Time.time)) {//(0.2f < Mathf.Abs(Input.GetAxisRaw("RightTrigger")) && shootWaitTime < Time.time)) {
+			int candyType = UnityEngine.Random.Range(0,candies.Length);
+			Transform candy = (Transform)Instantiate(candies[candyType]);
+			currentCandy = candy;
+			candy.transform.position = transform.position + Vector3.up*1;//3.5f;
+			candy.rigidbody.AddForce(Vector3.up * -2000);
+			shootWaitTime = Time.time + shootWait;
+			armWaitTime = Time.time + armWait;
 
-			} else if (armWaitTime > Time.time) {
-				foreach (GameObject arm in arms) {
-					FlexArm(arm, -armSpeed);
-				}
-				ringHolder.collider.enabled = false;
-			} else {
-				foreach (GameObject arm in arms) {
-					FlexArm(arm, armSpeed);
-				}
-				ringHolder.collider.enabled = true;
+		} else if (armWaitTime > Time.time) {
+			foreach (GameObject arm in arms) {
+				FlexArm(arm, -armSpeed);
 			}
+			ringHolder.collider.enabled = false;
+		} else {
+			foreach (GameObject arm in arms) {
+				FlexArm(arm, armSpeed);
+			}
+			ringHolder.collider.enabled = true;
+		}
 		//}
 	}
 

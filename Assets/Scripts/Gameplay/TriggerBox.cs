@@ -14,6 +14,9 @@ public class TriggerBox : MonoBehaviour {
 	public bool isTransporter;
 	public GameObject resetPos;
 
+	public bool isCandyWin = false;
+	public Spawner candyWin;
+
 	public bool destroyOnTrigger;
 
 	// Use this for initialization
@@ -39,6 +42,10 @@ public class TriggerBox : MonoBehaviour {
 			if (isTransporter) {
 				col.transform.position = resetPos.transform.position;
 			}
+			if (isCandyWin) {
+				candyWin.spawnNow = true;
+			}
+
 			if (destroyOnTrigger) {
 				Destroy(this.gameObject);
 			}

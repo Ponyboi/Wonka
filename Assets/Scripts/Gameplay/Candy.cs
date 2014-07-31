@@ -23,7 +23,8 @@ public class Candy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		if (transform.position.y < -40)
+			Destroy(this.gameObject);
 	}
 
 	public void PlayAudio() {

@@ -12,6 +12,7 @@ public class Door : MonoBehaviour {
 	public float speed = 0.2f;
 	public Vector3 openPos;
 	public Vector3 closePos;
+	public GameObject[] panels;
 
 	// Use this for initialization
 	void Start () {

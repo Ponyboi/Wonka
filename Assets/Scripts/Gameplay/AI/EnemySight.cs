@@ -18,6 +18,7 @@ public class EnemySight : MonoBehaviour
 	//private HashIDs hash;                           // Reference to the HashIDs.
 	public Vector3 previousSighting;               // Where the player was sighted last frame.
 	private float coolDownTime = 0.0f;
+	public float yOffset = 3;
 	
 	
 	void Awake ()
@@ -74,7 +75,7 @@ public class EnemySight : MonoBehaviour
 			playerInSight = false;
 			
 			// Create a vector from the enemy to the player and store the angle between it and forward.
-			Vector3 direction = other.transform.position - transform.position;
+			Vector3 direction = (other.transform.position + Vector3.up * yOffset) - transform.position;
 			//Debug.DrawLine(other.transform.position, transform.position);
 			//Debug.DrawLine(transform.position, transform.forward*1);
 			float angle = Vector3.Angle(direction, transform.forward);
@@ -83,7 +84,8 @@ public class EnemySight : MonoBehaviour
 			if(angle < fieldOfViewAngle * 0.5f)
 			{
 				RaycastHit hit;
-				
+
+				Debug.DrawRay(transform.position, direction * 20, Color.blue);
 				// ... and if a raycast towards the player hits something...
 				if(Physics.Raycast(transform.position, direction.normalized, out hit, col.radius))
 				{

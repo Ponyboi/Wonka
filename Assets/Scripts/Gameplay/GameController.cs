@@ -55,9 +55,9 @@ public class GameController : MonoBehaviour {
 			}
 		}
 		if (idSelect == 1) {
-			pointer.transform.position = players[idSelect].transform.position + (Vector3.up * 2.5f);
+			//pointer.transform.position = players[idSelect].transform.position + (Vector3.up * 2.5f);
 		} else {
-			pointer.transform.position = players[idSelect].transform.position + Vector3.up * 2;
+			//pointer.transform.position = players[idSelect].transform.position + Vector3.up * 2;
 		}
 
 		if (camMode != camController.GetCamMode()) {

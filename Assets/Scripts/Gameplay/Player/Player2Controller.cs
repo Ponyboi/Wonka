@@ -6,6 +6,7 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Player2Controller : MonoBehaviour {
 	public GameController gameController;
@@ -13,7 +14,7 @@ public class Player2Controller : MonoBehaviour {
 	public PlayerController player2;
 	public Nozzle nozzle;
 	public GameObject[] panels;
-	public Door[] doors;
+	public List<Door> doors = new List<Door>();
 	private bool isRiding = false;
 	public float proxThresh;
 	public float buttonPressTime = 0.0f;
@@ -31,15 +32,19 @@ public class Player2Controller : MonoBehaviour {
 				}
 
 		panels = GameObject.FindGameObjectsWithTag("panel");
-		if (GameObject.Find ("Doors") != null) {
-						doors = GameObject.Find ("Doors").GetComponentsInChildren<Door> ();
-				}
+		GameObject[] doorsArray = GameObject.FindGameObjectsWithTag("door");
+		for (int i=0; i<doorsArray.Length; i++) {
+			//if (doorsArray[i] == ) {
+			doors.Add(doorsArray[i].GetComponent<Door>());
+			//}
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//if (gameController.getIdSelect() == this.GetComponent<PlayerController>().id) {
-		if (Mathf.Abs(Input.GetAxisRaw("Ability2")) < -0.8f && Time.time > buttonPressTime + buttonTimeout) {// ||  Input.GetButtonDown("PlayerAbility")) {
+		//Debug.Log(Input.GetAxisRaw("RightTrigger"));
+		if ((Input.GetAxisRaw("RightTrigger") < -0.8f || Input.GetButtonDown("Ability2")) && Time.time > buttonPressTime + buttonTimeout) {// ||  Input.GetButtonDown("PlayerAbility")) {
 			buttonPressTime = Time.time;
 			foreach(GameObject panel in panels) {
 					if ((panel.transform.position - transform.position).magnitude < proxThresh) {
@@ -59,7 +64,11 @@ public class Player2Controller : MonoBehaviour {
 						} else {
 							Debug.Log ("yes");
 							foreach (Door door in doors) {
-								door.SetState(!door.state);
+								for (int i=0; i<door.panels.Length; i++) {
+									if (door.panels[i]  == panel) {
+										door.SetState(!door.state);
+									}
+								}
 							}
 						}
 					}

@@ -12,12 +12,15 @@ public class Spawner : MonoBehaviour {
 	public float timerInterval;
 	private float timeCount;
 	public List<Transform> typeList;
+	public bool spawnNow = false;
 
 	public enum SpawnType {Box, Circle};
 
 	// Use this for initialization
 	void Start () {
-		SpawnNow();
+		if (timerOn){
+			SpawnNow();
+		}
 		timeCount = timerInterval;
 	}
 	
@@ -30,6 +33,10 @@ public class Spawner : MonoBehaviour {
 				timeCount = Time.time + timerInterval;
 				Debug.Log ("Time: " + Time.time + " timeCount: " + timeCount);
 			}
+		}
+		if (spawnNow) {
+			SpawnNow();
+			spawnNow = false;
 		}
 	}
 
@@ -47,7 +54,7 @@ public class Spawner : MonoBehaviour {
 			} else {
 				float x = Random.Range(-radius, radius);
 				float z = Random.Range(-radius, radius);
-				Vector3 genPosition = new Vector3(x, transform.position.y, z);
+				Vector3 genPosition = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
 				genPosition = Vector3.ClampMagnitude(genPosition, radius);
 				item = (Transform)Instantiate(typeList[typeIndex]);
 				item.transform.position = genPosition;

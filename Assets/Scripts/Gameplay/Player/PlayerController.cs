@@ -187,10 +187,12 @@ public class PlayerController : MonoBehaviour
 			v = Input.GetAxisRaw("Vertical2");
 			h = Input.GetAxisRaw("Horizontal2");
 			if (Input.GetAxisRaw("Vertical2") == 0 && Input.GetAxisRaw("Horizontal2") == 0) {
-				if (Mathf.Abs(Input.GetAxisRaw("RightAnalog_V")) > 0.3f) {
+				if (Mathf.Abs(Input.GetAxisRaw("RightAnalog_V")) > 0.8f) {
 					v = -Input.GetAxisRaw("RightAnalog_V");
 				}
-				h = Input.GetAxisRaw("RightAnalog_H");
+				if (Mathf.Abs(Input.GetAxisRaw("RightAnalog_H")) > 0.8f) {
+					h = Input.GetAxisRaw("RightAnalog_H");
+				}
 			}
 		}
 		

@@ -25,7 +25,7 @@ public class Player1Controller : MonoBehaviour {
 	void Update () {
 	if (gameController.getIdSelect() == this.GetComponent<PlayerController>().id) {
 
-			if (Input.GetAxisRaw("Ability") > 0.8f && Time.time > buttonPressTime + buttonTimeout) {// ||  Input.GetButtonDown("PlayerAbility")) {
+			if ((Input.GetAxisRaw("LeftTrigger") > 0.8f || Input.GetButtonDown("Ability")) && Time.time > buttonPressTime + buttonTimeout) {// ||  Input.GetButtonDown("PlayerAbility")) {
 				buttonPressTime = Time.time;
 				if ((player2.transform.position - transform.position).magnitude < proxThresh) {
 					if (isRiding) {
