@@ -496,6 +496,9 @@ public AnimationClip jumpPoseAnimation;
 				body.AddForce(moveDirection * 50);
 			}
 		}
+		if(hit.rigidbody!=null){
+			hit.rigidbody.AddForce(hit.moveDirection);
+		}
 
 		if (hit.gameObject.tag == "Candy" && candyTime < Time.time) {
 			Candy candy = (Candy)hit.gameObject.GetComponent<Candy>();
