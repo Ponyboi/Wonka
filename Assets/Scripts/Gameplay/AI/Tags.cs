@@ -6,6 +6,7 @@ public class Tags : MonoBehaviour {
 	public static string bigPlayer = "BigPlayer";
 	public static string gameController = "GameController";
 	public static int vanishLayer = 31;
+	public static int riverSolidLayer = 30;
 
 	// Use this for initialization
 	void Start () {

@@ -13,7 +13,9 @@ public class GameController : MonoBehaviour {
 	public CameraController.CameraMode camMode;
 	public int camShotIndex;
 	public float cameraZoom;
-	public GameObject[] players;
+	public PlayerController[] players;
+	private PlayerController player1;
+	private PlayerController player2;
 	public int id;
 	public int idSelect = 1;
 	public Transform pointerModel;
@@ -26,6 +28,15 @@ public class GameController : MonoBehaviour {
 		pointer = Instantiate(pointerModel) as Transform;
 		camController = GameObject.Find("_CameraController").GetComponent<CameraController>();
 		Physics.IgnoreLayerCollision(10, 11); //wall and dispenser
+		Physics.IgnoreLayerCollision(12, 30); //player and river
+
+		players = GameObject.FindObjectsOfType(typeof(PlayerController)) as PlayerController[];
+		foreach(PlayerController player in players) {
+			if (player.id == 1)
+				player1 = player;
+			if (player.id == 2)
+				player2 = player;
+		}
 
 		//Vanish Tools
 		GameObject[] layerObjects = FindGameObjectsWithLayer(Tags.vanishLayer);

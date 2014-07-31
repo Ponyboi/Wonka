@@ -11,6 +11,8 @@ public class Player1Controller : MonoBehaviour {
 	public PlayerController player2;
 	private bool isRiding = false;
 	public float proxThresh;
+	public float buttonPressTime = 0.0f;
+	public float buttonTimeout = 0.4f;
 	private GameController gameController;
 
 	// Use this for initialization
@@ -22,17 +24,21 @@ public class Player1Controller : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	if (gameController.getIdSelect() == this.GetComponent<PlayerController>().id) {
-			if (Input.GetKeyDown(KeyCode.E) ||  Input.GetButtonDown("PlayerAbility")) {
+
+			if (Input.GetAxisRaw("Ability") > 0.8f && Time.time > buttonPressTime + buttonTimeout) {// ||  Input.GetButtonDown("PlayerAbility")) {
+				buttonPressTime = Time.time;
 				if ((player2.transform.position - transform.position).magnitude < proxThresh) {
 					if (isRiding) {
 						player2.transform.parent = null;
 						player2.GetComponent<CharacterController>().enabled = true;
 						isRiding = false;
+						gameController.camMode = CameraController.CameraMode.Coop;
 					} else {
 						player2.transform.position = transform.position + transform.up - transform.forward;
 						player2.transform.parent = transform;
 						player2.GetComponent<CharacterController>().enabled = false;
 						isRiding = true;
+						gameController.camMode = CameraController.CameraMode.Solo;
 					}
 				}
 			}

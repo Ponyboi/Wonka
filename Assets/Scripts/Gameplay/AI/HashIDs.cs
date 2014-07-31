@@ -20,6 +20,7 @@ public class HashIDs : MonoBehaviour
 	public int isJumping;
 	public int isGrounded;
 	public int verticalSpeed;
+	public int isDrowning;
 	
 	void Awake ()
 	{
@@ -39,5 +40,6 @@ public class HashIDs : MonoBehaviour
 		isJumping = Animator.StringToHash("isJumping");
 		isGrounded = Animator.StringToHash("isGrounded");
 		verticalSpeed = Animator.StringToHash("verticalSpeed");
+		isDrowning = Animator.StringToHash("isDrowning");
 	}
 }

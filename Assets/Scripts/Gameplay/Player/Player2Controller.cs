@@ -16,8 +16,9 @@ public class Player2Controller : MonoBehaviour {
 	public Door[] doors;
 	private bool isRiding = false;
 	public float proxThresh;
-
-
+	public float buttonPressTime = 0.0f;
+	public float buttonTimeout = 0.4f;
+	
 	private bool nozzleBool = false;
 	
 	// Use this for initialization
@@ -37,9 +38,10 @@ public class Player2Controller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (gameController.getIdSelect() == this.GetComponent<PlayerController>().id) {
-			if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("PlayerAbility")) {
-				foreach(GameObject panel in panels) {
+		//if (gameController.getIdSelect() == this.GetComponent<PlayerController>().id) {
+		if (Mathf.Abs(Input.GetAxisRaw("Ability2")) < -0.8f && Time.time > buttonPressTime + buttonTimeout) {// ||  Input.GetButtonDown("PlayerAbility")) {
+			buttonPressTime = Time.time;
+			foreach(GameObject panel in panels) {
 					if ((panel.transform.position - transform.position).magnitude < proxThresh) {
 						if (panel.name == "Panel_Nozzle") {
 							nozzleBool = !nozzleBool;
@@ -57,12 +59,12 @@ public class Player2Controller : MonoBehaviour {
 						} else {
 							Debug.Log ("yes");
 							foreach (Door door in doors) {
-								door.SetState(true);
+								door.SetState(!door.state);
 							}
 						}
 					}
 				}
 			}
-		}
+		//}
 	}
 }

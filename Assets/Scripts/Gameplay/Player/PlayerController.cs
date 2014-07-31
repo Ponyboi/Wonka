@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 	private Vector3 airDirection;
 	public float playerSpeed = 5f;
 	private Vector3 lastPos;
+	public float speedMod = 1;
 
 	// Moving platform support
 	public Transform activePlatform;
@@ -49,9 +50,12 @@ public class PlayerController : MonoBehaviour
 	public bool jumpStart = false;
 	private bool vertSpeedSet = false;
 	private float jumpMaxHold = 0.35f;
+	public bool isGravity = true;
 
 	public float inAirControlAcceleration = 18.0F;
-	
+
+	public bool isDrowning = false;
+
 	// How high do we jump when pressing jump and letting go immediately
 	public float jumpHeight = 4.5F;
 	
@@ -130,11 +134,15 @@ public class PlayerController : MonoBehaviour
 		Grabbing();
 
 //		bool sneak = false; //Input.GetButton("Sneak");
-		PlatformMovement();
+		// isGravity is used when player is in river to prevent simpleMove() as it uses gravity
+		if (isGravity) {
+			PlatformMovement();
+		}
 		MovementManagement();
 
 		Jumping();
-	
+
+		Drowning();
 	}
 	
 
@@ -172,8 +180,19 @@ public class PlayerController : MonoBehaviour
 		
 		float v= 0;
 		float h= 0;
-		v = Input.GetAxisRaw("Vertical");
-		h = Input.GetAxisRaw("Horizontal");
+		if (id == 1) {
+			v = Input.GetAxisRaw("Vertical");
+			h = Input.GetAxisRaw("Horizontal");
+		} else {
+			v = Input.GetAxisRaw("Vertical2");
+			h = Input.GetAxisRaw("Horizontal2");
+			if (Input.GetAxisRaw("Vertical2") == 0 && Input.GetAxisRaw("Horizontal2") == 0) {
+				if (Mathf.Abs(Input.GetAxisRaw("RightAnalog_V")) > 0.3f) {
+					v = -Input.GetAxisRaw("RightAnalog_V");
+				}
+				h = Input.GetAxisRaw("RightAnalog_H");
+			}
+		}
 		
 		// Target direction relative to the camera
 		targetDirection= h * right + v * forward;
@@ -190,7 +209,7 @@ public class PlayerController : MonoBehaviour
 		{
 			// ... set the players rotation and set the speed parameter to 5.5f.
 			Vector2 moveDir = new Vector2(horizontal, vertical);
-			moveDir = moveDir * moveSpeed;
+			moveDir = moveDir * moveSpeed * speedMod;
 			//moveDir *= moveDir.magnitude;
 			Rotating(horizontal, vertical);
 			anim.SetFloat(hash.speedFloat, moveDir.magnitude, speedDampTime, Time.deltaTime);
@@ -223,7 +242,9 @@ public class PlayerController : MonoBehaviour
 		if (IsGrounded()) {
 			verticalSpeed = 0.0f;
 		} else {
-			verticalSpeed -= gravity * Time.deltaTime;
+			if (isGravity) {
+				verticalSpeed -= gravity * Time.deltaTime;
+			}
 			//Debug.Log("gravity");
 		}
 	}
@@ -232,9 +253,16 @@ public class PlayerController : MonoBehaviour
 		//Debug.Log("isGrounded: " + IsGrounded() + " " + verticalSpeed);
 		// First check if jump is pushed
 		if (IsGrounded()) {
-			if (Input.GetButtonDown("Jump")) {
-				lastJumpButtonTime = Time.time;
-				vertSpeedSet = true;
+			if (id == 1){
+				if (Input.GetButtonDown("Jump")) {
+					lastJumpButtonTime = Time.time;
+					vertSpeedSet = true;
+				}
+			} else {
+				if (Input.GetButtonDown("Jump2")) {
+					lastJumpButtonTime = Time.time;
+					vertSpeedSet = true;
+				}
 			}
 			verticalSpeed = 0.0f;
 		} else {
@@ -243,7 +271,9 @@ public class PlayerController : MonoBehaviour
 				verticalSpeed += 0.8f;
 			}
 			AirMovement();
-			verticalSpeed -= gravity * Time.deltaTime;
+			if (isGravity) {
+				verticalSpeed -= gravity * Time.deltaTime;
+			}
 			//Debug.Log("gravity");
 		}
 		if (Time.time < lastJumpButtonTime + jumpTimeout) {
@@ -295,9 +325,14 @@ public class PlayerController : MonoBehaviour
 		//Debug.Log("movement: " + movement);
 		Vector3 clampedAirAccel = Vector3.ClampMagnitude(movement, 14);
 		movement = new Vector3(clampedAirAccel.x, movement.y, clampedAirAccel.z);
+		movement *= speedMod;
 		movement *= Time.deltaTime;
 		
 		collisionFlags = controller.Move(movement);
+	}
+
+	void Drowning(){
+		anim.SetBool(hash.isDrowning, isDrowning);
 	}
 
 	void Grabbing() {
@@ -335,6 +370,7 @@ public class PlayerController : MonoBehaviour
 		
 		if (activePlatform == null) {
 			controller.SimpleMove(Vector3.zero);
+			//controller.Move(Vector3.zero);
 		}
 		// Move the controller
 		//controller = GetComponent<CharacterController>();
