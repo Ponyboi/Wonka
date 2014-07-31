@@ -24,6 +24,7 @@ public class EnemyAnimation : MonoBehaviour
 		nav = GetComponent<NavMeshAgent>();
 		anim = GetComponent<Animator>();
 		hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<HashIDs>();
+		Debug.Log (hash);
 		
 		// Making sure the rotation is controlled by Mecanim.
 		nav.updateRotation = false;
