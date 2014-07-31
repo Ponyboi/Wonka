@@ -17,6 +17,7 @@ public class AnimatorSetup
 	{
 		anim = animator;
 		hash = hashIDs;
+		Debug.Log (hash.speedFloat);
 	}
 	
 	
@@ -26,6 +27,7 @@ public class AnimatorSetup
 		float angularSpeed = angle / angleResponseTime;
 		
 		// Set the mecanim parameters and apply the appropriate damping to them.
+
 		anim.SetFloat(hash.speedFloat, speed, speedDampTime, Time.deltaTime);
 		anim.SetFloat(hash.angularSpeedFloat, angularSpeed, angularSpeedDampTime, Time.deltaTime);
 	}   
